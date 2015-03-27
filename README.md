@@ -7,6 +7,8 @@ This is a package designed to email a summary of collection counts and statistic
 - [aldeed:collection2](https://atmospherejs.com/aldeed/collection2)              [To define collections to store stats]
 - [percolatestudio:synced-cron](https://atmospherejs.com/percolatestudio/synced-cron)     [To schedule email digests]
 - [wylio:mandrill](https://atmospherejs.com/wylio/mandrill)                  [To send email using mandrill]
+- [underscore](https://atmospherejs.com/wylio/mandrill)                  [Everyone's favourite js library]
+- [momentjs:moment](https://atmospherejs.com/momentjs/moment)          [To format the time in the email message]
 
 Currently, Reporter will give you the daily count of configured collections and Deltas against the last 5 periods.  For more job types, raise an issue on this repo and we'll be happy to oblige.
 
@@ -17,17 +19,7 @@ Currently, Reporter will give you the daily count of configured collections and 
 Either: `$ export MANDRILL_API_KEY=xxxxxxxxxxxxx` in your session before starting meteor or `$ MANDRILL_API_KEY=xxxxxxxxxxx meteor`
 
 
-### 2: Configure schedule, collections and recipients
-
-If you are using [alanning:roles](https://atmospherejs.com/alanning/roles), congratulations, the recipient list is just a list of role names to be used.  You can also add in email addresses for situations where you want to add non-user recipients.
-
-    Reporter.config({
-      schedule: '15 10 ? * *', // cron schedule: every day at 10:15 am 
-      collections: ['Meteor.users', 'Posts', 'Comments'],
-      recipients: ['admin', 'manager', 'non-user@example.com']
-    });
-
-If you are not using [alanning:roles](https://atmospherejs.com/alanning/roles), 1. you should, 2. just use a list of email addresses.
+### 2: Configure schedule, collections, sender and recipients
 
     Reporter.config({
       schedule: '15 10 ? * *', // cron schedule: every day at 10:15 am 
@@ -40,3 +32,10 @@ If you are not using [alanning:roles](https://atmospherejs.com/alanning/roles), 
 [later.js cron reference](http://bunkat.github.io/later/parsers.html#cron)
 
 ## Advanced Usage
+
+Coming soon!  Under development are features like:
+
+- Integration with `alanning:roles` and defining recipients as emails or roles
+- Easier user-defined reporter functions
+- Ability to include recent documents that make up the deltas in the email
+- Personalised email templates

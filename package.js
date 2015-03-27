@@ -27,7 +27,6 @@ Package.on_use(function (api) {
 
 
   api.export([
-    'get_email_text', // DELETE THIS
     'CollectionCount',
     'Reporter'
   ]);
