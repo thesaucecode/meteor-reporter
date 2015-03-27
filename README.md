@@ -32,7 +32,8 @@ If you are not using [alanning:roles](https://atmospherejs.com/alanning/roles), 
     Reporter.config({
       schedule: '15 10 ? * *', // cron schedule: every day at 10:15 am 
       collections: ['Meteor.users', 'Posts', 'Comments'],
-      recipients: ['user@example.com', 'other-user@example.com']
+      recipients: ['user@example.com', 'other-user@example.com'],
+      from: 'app@example.com'
     });
 
 [Cron expression help](http://www.cronmaker.com/)
