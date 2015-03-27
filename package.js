@@ -8,6 +8,8 @@ Package.on_use(function (api) {
   api.use([
     'mongo',
     'aldeed:collection2',
+    'underscore',
+    'momentjs:moment',
     'percolatestudio:synced-cron',
     'wylio:mandrill'
   ]);
@@ -24,5 +26,9 @@ Package.on_use(function (api) {
 
 
 
-  api.export('Reporter');
+  api.export([
+    'get_email_text', // DELETE THIS
+    'CollectionCount',
+    'Reporter'
+  ]);
 });
