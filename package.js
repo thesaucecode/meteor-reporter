@@ -5,6 +5,7 @@ Package.describe({
 });
 
 Package.on_use(function (api) {
+  api.versonsFrom("METEOR@0.9.0");
   api.use([
     'mongo',
     'aldeed:collection2',
