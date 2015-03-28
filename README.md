@@ -39,3 +39,5 @@ Coming soon!  Under development are features like:
 - Easier user-defined reporter functions
 - Ability to include recent documents that make up the deltas in the email
 - Personalised email templates
+- Admin page to configure schedule and collections for jobs
+

@@ -8,11 +8,11 @@ Package.on_use(function (api) {
   api.versionsFrom('METEOR@1.0');
   api.use([
     'mongo',
-    'aldeed:collection2',
+    'aldeed:collection2@2.3.2',
     'underscore',
-    'momentjs:moment',
-    'percolatestudio:synced-cron',
-    'wylio:mandrill'
+    'momentjs:moment@2.8.4',
+    'percolatestudio:synced-cron@0.1.0',
+    'wylio:mandrill@0.1.0'
   ]);
 
   api.add_files([
