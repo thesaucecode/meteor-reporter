@@ -17,7 +17,7 @@ minimongo@1.0.7
 momentjs:moment@2.8.4
 mongo@1.1.0
 ordered-dict@1.0.3
-percolatestudio:synced-cron@1.2.0
+percolatestudio:synced-cron@1.1.0
 random@1.0.3
 retry@1.0.3
 tracker@1.0.6
