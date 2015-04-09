@@ -11,7 +11,7 @@ Package.on_use(function (api) {
     'aldeed:collection2@2.3.2',
     'underscore',
     'momentjs:moment@2.8.4',
-    'percolatestudio:synced-cron@1.2.0',
+    'percolatestudio:synced-cron@1.1.0',
     'wylio:mandrill@0.1.0'
   ]);
 
