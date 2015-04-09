@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Report collection count and other stats to admins periodically",
   git: "https://github.com/thesaucecode/meteor-reporter.git",
-  version: "0.0.2"
+  version: "0.0.3"
 });
 
 Package.on_use(function (api) {
@@ -11,7 +11,7 @@ Package.on_use(function (api) {
     'aldeed:collection2@2.3.2',
     'underscore',
     'momentjs:moment@2.8.4',
-    'percolatestudio:synced-cron@0.1.0',
+    'percolatestudio:synced-cron@1.2.0',
     'wylio:mandrill@0.1.0'
   ]);
 
