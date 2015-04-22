@@ -80,13 +80,13 @@ This function declares each SyncedCron job for the entered job configuration and
 
 ### `add_job(job_key, config_obj)`
 ######`job_key: String`
-######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, fn: Function}`
+######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
 
 This adds a job to be initialised in the `init()` function.  Job keys must be unique.  If called on an existing job, the entire job config will be replaced with that passed in.
 
 ### `update_job(job_key, config_obj)`
 ######`job_key: String`
-######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, fn: Function}`
+######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
 
 This updates the config for the given job config.  For any arguments that aren't provided, the existing setting from the previous config will be used.
 
@@ -97,7 +97,7 @@ This removes a job.
 
 ### `send_results(html_body, config_obj)`
 ######`html_body: String`
-######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, fn: Function}`
+######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
 
 The `config_obj` is provided as the first and only argument to the function for each scheduled job.  After collecting data and creating an HTML formatted email body, call `send_results(html_body, config_obj)` to send that email to each of the job's configured recipients through Mandrill's API.
 
