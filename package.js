@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "Report collection count and deltas.  Growth hacking metrics delivered to your inbox however often you want.",
+  summary: "Report collection count + deltas. Growth hacking metrics sent to your email however often you want",
   git: "https://github.com/thesaucecode/meteor-reporter.git",
   version: "0.1.0"
 });
