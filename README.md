@@ -1,4 +1,6 @@
-# Reporter
+# em0ney:reporter
+
+Simple collection count and delta reports.  Growth hacking metrics delivered to your inbox however often you want.
 
 Install: `meteor add em0ney:reporter`
 
