@@ -19,25 +19,94 @@ Currently, Reporter will give you the daily count of configured collections and 
 Either: `$ export MANDRILL_API_KEY=xxxxxxxxxxxxx` in your session before starting meteor or `$ MANDRILL_API_KEY=xxxxxxxxxxx meteor`
 
 
-### 2: Configure schedule, collections, sender and recipients
+### 2: Configure or Deactivate Out of the Box Jobs
 
-    Reporter.config({
-      schedule: '15 10 ? * *', // cron schedule: every day at 10:15 am 
-      collections: ['Meteor.users', 'Posts', 'Comments'],
-      recipients: ['user@example.com', 'other-user@example.com'],
-      from: 'app@example.com'
-    });
+The package comes with the following out of the box jobs:
+
+- `send_delta_email`: send configured recipients the configured collection counts and deltas for the last 5 runs
+
+Configure this as follows.  Any options omitted will be sourced from the existing configuration object.
+
+```javascript
+Reporter.update_job('send_delta_email', {
+  schedule: '15 10 ? * *', // cron schedule: every day at 10:15 am 
+  collections: ['Meteor.users', 'Posts', 'Comments'],
+  recipients: ['user@example.com', 'other-user@example.com'],
+  fromAddress: 'app@example.com',
+  subject: 'my custom subject'
+});
+```
 
 [Cron expression help](http://www.cronmaker.com/)
 [later.js cron reference](http://bunkat.github.io/later/parsers.html#cron)
+
+If you do not wish to run an out of the box job, simply fun the following:
+
+```javascript
+Reporter.remove_job('send_delta_email');
+```
+
+### 3: Initialize Synced Cron through our hook
+
+```javascript
+Reporter.init();
+```
+
+And that's it!
+
+##### In summary, include the following.
+
+```javascript
+if (Meteor.isServer) {
+  Meteor.startup(function() {
+    Reporter.update_job('send_delta_email', {
+      schedule: '15 10 ? * *', // cron schedule: every day at 10:15 am 
+      collections: ['Meteor.users', 'Posts', 'Comments'],
+      recipients: ['user@example.com', 'other-user@example.com'],
+      fromAddress: 'app@example.com',
+      subject: 'my custom subject'
+    });
+    Reporter.init();
+  }); 
+}
+```
+
+## Functions
+
+### `init()`
+
+This function declares each SyncedCron job for the entered job configuration and initialises SyncedCron to run.  Must be called for this entered job configurations to take effect.
+
+### `add_job(job_key, config_obj)`
+######`job_key: String`
+######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, fn: Function}`
+
+This adds a job to be initialised in the `init()` function.  Job keys must be unique.  If called on an existing job, the entire job config will be replaced with that passed in.
+
+### `update_job(job_key, config_obj)`
+######`job_key: String`
+######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, fn: Function}`
+
+This updates the config for the given job config.  For any arguments that aren't provided, the existing setting from the previous config will be used.
+
+### `remove_job(job_key)`
+######`job_key: String`
+
+This removes a job.
+
+### `send_results(html_body, config_obj)`
+######`html_body: String`
+######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, fn: Function}`
+
+The `config_obj` is provided as the first and only argument to the function for each scheduled job.  After collecting data and creating an HTML formatted email body, call `send_results(html_body, config_obj)` to send that email to each of the job's configured recipients through Mandrill's API.
 
 ## Advanced Usage
 
 Coming soon!  Under development are features like:
 
-- Integration with `alanning:roles` and defining recipients as emails or roles
-- Easier user-defined reporter functions
+- Optional integration with `alanning:roles` and defining recipients as emails or roles
 - Ability to include recent documents that make up the deltas in the email
 - Personalised email templates
 - Admin page to configure schedule and collections for jobs
+- Dashboard page
 

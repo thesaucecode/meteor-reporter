@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Report collection count and other stats to admins periodically",
   git: "https://github.com/thesaucecode/meteor-reporter.git",
-  version: "0.0.3"
+  version: "0.1.0"
 });
 
 Package.on_use(function (api) {
