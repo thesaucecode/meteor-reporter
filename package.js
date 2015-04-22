@@ -19,13 +19,10 @@ Package.on_use(function (api) {
     'lib/reporter_collections.js'
   ], ['client', 'server']);
 
-
   api.add_files([
     'lib/startup.js',
     'lib/reporter.js'
   ], 'server');
-
-
 
   api.export([
     'CollectionCount',

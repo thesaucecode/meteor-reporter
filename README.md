@@ -64,6 +64,7 @@ if (Meteor.isServer) {
       collections: ['Meteor.users', 'Posts', 'Comments'],
       recipients: ['user@example.com', 'other-user@example.com'],
       fromAddress: 'app@example.com',
+      dateConfig: 'MMM Do, HH:mm', // OPTIONAL.  moment.js format.  If omitted, uses .ago()
       subject: 'my custom subject'
     });
     Reporter.init();
