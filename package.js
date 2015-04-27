@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Report collection count + deltas. Growth hacking metrics sent to your email however often you want",
   git: "https://github.com/thesaucecode/meteor-reporter.git",
-  version: "0.1.0"
+  version: "0.1.1"
 });
 
 Package.on_use(function (api) {
@@ -12,7 +12,7 @@ Package.on_use(function (api) {
     'underscore',
     'momentjs:moment@2.8.4',
     'percolatestudio:synced-cron@1.1.0',
-    'wylio:mandrill@0.1.0'
+    'wylio:mandrill@0.2.1'
   ]);
 
   api.add_files([
