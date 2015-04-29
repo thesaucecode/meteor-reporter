@@ -115,7 +115,7 @@ e.g.
       dateConfig: 'MMM Do, HH:mm', // OPTIONAL.  moment.js format.  If omitted, uses .ago()
       subject: 'my custom subject'
     });
-    Reporter.reload_job(job_key);
+    Reporter.reload_job('send_delta_email');
 ```
 
 ### `send_results(html_body, config_obj)`
