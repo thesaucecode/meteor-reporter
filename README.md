@@ -81,25 +81,46 @@ if (Meteor.isServer) {
 This function declares each SyncedCron job for the entered job configuration and initialises SyncedCron to run.  Must be called for this entered job configurations to take effect.
 
 ### `add_job(job_key, config_obj)`
-######`job_key: String`
-######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
+###### `job_key: String`
+###### `config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
 
 This adds a job to be initialised in the `init()` function.  Job keys must be unique.  If called on an existing job, the entire job config will be replaced with that passed in.
 
 ### `update_job(job_key, config_obj)`
-######`job_key: String`
-######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
+###### `job_key: String`
+###### `config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
 
 This updates the config for the given job config.  For any arguments that aren't provided, the existing setting from the previous config will be used.
 
 ### `remove_job(job_key)`
-######`job_key: String`
+###### `job_key: String`
 
 This removes a job.
 
+### `reload_job(job_key)`
+###### `job_key: String`
+
+This reloads the configuration referenced by job_key, such that SyncedCron reloads the schedule for it.  It should be called after `update_job` if `init()` has already been called.
+
+e.g. 
+
+```javascript
+	Reporter.init();
+...
+	Reporter.update_job('send_delta_email', {
+      schedule: '15 10 ? * *', // cron schedule: every day at 10:15 am 
+      collections: ['Meteor.users', 'Posts', 'Comments'],
+      recipients: ['user@example.com', 'other-user@example.com'],
+      fromAddress: 'app@example.com',
+      dateConfig: 'MMM Do, HH:mm', // OPTIONAL.  moment.js format.  If omitted, uses .ago()
+      subject: 'my custom subject'
+    });
+    Reporter.reload_job(job_key);
+```
+
 ### `send_results(html_body, config_obj)`
-######`html_body: String`
-######`config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
+###### `html_body: String`
+###### `config_obj: {schedule: String, collections: [String], recipients: [String], fromAddress: String, subject: String, fn: Function}`
 
 The `config_obj` is provided as the first and only argument to the function for each scheduled job.  After collecting data and creating an HTML formatted email body, call `send_results(html_body, config_obj)` to send that email to each of the job's configured recipients through Mandrill's API.
 
