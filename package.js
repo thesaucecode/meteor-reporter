@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Report collection count + deltas. Growth hacking metrics sent to your email however often you want",
   git: "https://github.com/thesaucecode/meteor-reporter.git",
-  version: "0.2.0"
+  version: "0.2.1"
 });
 
 Package.on_use(function (api) {
